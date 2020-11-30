@@ -1,0 +1,15 @@
+<% content_for :head do %>
+test
+<% end %>
+
+<h1>Hello world!!!</h1>
+<br>
+<b>CUCUJOIDEA IS THE BEST</b>
+
+My project id: <%=sessions_current_project_id -%>
+<br>
+OTU count: <%= Otu.where(project_id: sessions_current_project_id).count -%>
+
+<br>
+OTU sql <%= Otu.where(project_id: sessions_current_project_id).to_sql -%>
+<br>

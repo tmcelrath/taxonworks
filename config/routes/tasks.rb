@@ -1,4 +1,10 @@
 scope :tasks do
+    scope :twt do
+      scope :hello_world, controller: 'tasks/twt/hello_world' do
+        get 'index', as: 'hello_world_task'
+      end
+    end
+
   scope :asserted_distributions do
     scope :basic_endemism, controller: 'tasks/asserted_distributions/basic_endemism' do
       get '/', action: :index, as: 'asserted_distributions_basic_endemism_task'
@@ -24,6 +30,11 @@ scope :tasks do
     scope :coldp, controller: 'tasks/exports/coldp' do
       get '/', action: :index, as: 'export_coldp_task'
       get 'download', as: 'download_coldp_task'
+    end
+
+    scope :docx, controller: 'tasks/exports/docx' do
+      get '/', action: :index, as: 'export_docx_task'
+      get 'download', as: 'download_docx_task'
     end
 
     scope :nomenclature, controller: 'tasks/exports/nomenclature' do
