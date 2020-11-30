@@ -7,7 +7,19 @@ This project <em>does not yet</em> adheres to [Semantic Versioning](https://semv
 
 ## [unreleased]
 
+\-
+
+## [0.15.0] - 2020-11-30
+
 ### Added
+- Export project database task [#1868]
+- Additional collecting methods recognized from the collecting event label
+- Added content filter, API endpoints [#1905] 
+- New greatly simplified controller concern `ShallowPolymorphic` for handling link b/w shallow routes and filters
+- Note filter improvements, specs, new params, API exposure [#XXX]
+- `person#sources` `has_many` (very slight potential for issues)
+- Multiple new people filter params, see `lib/queries/person/filter.rb` [#1859]
+- People can be Tagged
 - Added image filter [#1454]
 - Added image smart selector [#1832]
 - Added `pixels_to_centimeter` to images [#1785]
@@ -31,6 +43,8 @@ This project <em>does not yet</em> adheres to [Semantic Versioning](https://semv
 - Link to Browse OTU on comprehensive specimen digitization [#1889]
 
 ### Fixed
+- Potential issue (may be others) with CoLDP raising in the midst of large exports
+- People filter role + name [#1662] 
 - Fix family synonym validation [#1892]
 - Fix matrix view row order [#1881]
 - CVT view helper bug with predicates
@@ -45,6 +59,18 @@ This project <em>does not yet</em> adheres to [Semantic Versioning](https://semv
 - Remove repository on comprehensive specimen digitization [#1897]
 
 ### Changed
+- change the order of TaxonName softvalidation to bring the duplicate message on the top
+- tweaked CoLDP `reified` id concept and use
+- removed `most_recent_upates` from Content params
+- removed `/contents/filter.json` endpoint, use `/contents.json`
+- Deprecating `Concerns::Polymorphic` for `ShallowPolymorphic`, in progress, see Notes controller
+- Note filter params `query_string` => `text`, `note_object_types[]` => `note_object_type[]`, `note_object_ids[]` => `note_object_id[]`, added corresponding non-array versions
+- Moved `levenshtein_distance` to Query for general use
+- Remove `people/123/similar` endpoint (used `/index`)
+- Person filter `person_wildcards` is `person_wildcard`
+- Person filter behaviour vs. `levenshtein_cuttof`
+- cached_valid_taxon_name_id updated for combination after valid status is assigned.
+- updated soft validation for 'Uncertain placement'
 - [sic] changed to (sic) for misspelled bacterial names
 - Additional date and geographical coordinate formats added to the Verbatim label RegEx parsers 
 - Observation matrix could be resolved without observation_matrix_id, only with otu_filter
@@ -56,7 +82,12 @@ This project <em>does not yet</em> adheres to [Semantic Versioning](https://semv
 - Create original citation in image matrix task
 - Autocomplete list style
 - Edit button color on type material species task [#1898]
+- GitHub Actions used as main CI/CD provider
+- Updated vulnerable node packages [#1912]
 
+[#1905]: https://github.com/SpeciesFileGroup/taxonworks/issues/1905
+[#1662]: https://github.com/SpeciesFileGroup/taxonworks/issues/1662
+[#1859]: https://github.com/SpeciesFileGroup/taxonworks/issues/1859
 [#1881]: https://github.com/SpeciesFileGroup/taxonworks/issues/1881
 [#1454]: https://github.com/SpeciesFileGroup/taxonworks/issues/1454
 [#1832]: https://github.com/SpeciesFileGroup/taxonworks/issues/1832
@@ -65,6 +96,7 @@ This project <em>does not yet</em> adheres to [Semantic Versioning](https://semv
 [#1865]: https://github.com/SpeciesFileGroup/taxonworks/issues/1865
 [#1822]: https://github.com/SpeciesFileGroup/taxonworks/issues/1822
 [#1846]: https://github.com/SpeciesFileGroup/taxonworks/issues/1846
+[#1868]: https://github.com/SpeciesFileGroup/taxonworks/issues/1868
 [#1872]: https://github.com/SpeciesFileGroup/taxonworks/issues/1872
 [#1889]: https://github.com/SpeciesFileGroup/taxonworks/issues/1889
 [#1893]: https://github.com/SpeciesFileGroup/taxonworks/issues/1893
@@ -74,6 +106,7 @@ This project <em>does not yet</em> adheres to [Semantic Versioning](https://semv
 [#1897]: https://github.com/SpeciesFileGroup/taxonworks/issues/1897
 [#1898]: https://github.com/SpeciesFileGroup/taxonworks/issues/1898
 [#1899]: https://github.com/SpeciesFileGroup/taxonworks/issues/1899
+[#1912]: https://github.com/SpeciesFileGroup/taxonworks/pull/1912
 
 ## [0.14.1] - 2020-10-22
 
@@ -667,7 +700,8 @@ This project <em>does not yet</em> adheres to [Semantic Versioning](https://semv
 
 [#1532]: https://github.com/SpeciesFileGroup/taxonworks/issues/1532
 
-[unreleased]: https://github.com/SpeciesFileGroup/taxonworks/compare/v0.14.1...development
+[unreleased]: https://github.com/SpeciesFileGroup/taxonworks/compare/v0.15.0...development
+[0.15.0]: https://github.com/SpeciesFileGroup/taxonworks/compare/v0.14.1...v0.15.0
 [0.14.1]: https://github.com/SpeciesFileGroup/taxonworks/compare/v0.14.0...v0.14.1
 [0.14.0]: https://github.com/SpeciesFileGroup/taxonworks/compare/v0.13.0...v0.14.0
 [0.13.0]: https://github.com/SpeciesFileGroup/taxonworks/compare/v0.12.17...v0.13.0
